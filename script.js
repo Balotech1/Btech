@@ -61,4 +61,38 @@ document.addEventListener('DOMContentLoaded', () => {
       form.reset();
     }
   });
+
+  /* ---------- Auto-detect image format ----------
+     Any <img data-base="images/team/ayoola-bello"> tries every common
+     extension automatically, so the exact file type dropped into the repo
+     doesn't need to match hardcoded HTML. First one that loads wins. */
+  const IMAGE_EXTENSIONS = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'JPG', 'JPEG', 'PNG', 'WEBP'];
+
+  function loadWithFallback(img) {
+    const base = img.dataset.base;
+    let i = 0;
+
+    const tryNext = () => {
+      if (i >= IMAGE_EXTENSIONS.length) {
+        // Nothing worked — reveal whichever fallback UI applies
+        img.classList.add('broken');
+        const holder = img.closest('.team-photo, .portfolio-media, .service-media');
+        if (holder) holder.classList.add('no-photo');
+        return;
+      }
+      img.src = `${base}.${IMAGE_EXTENSIONS[i]}`;
+      i++;
+    };
+
+    img.addEventListener('error', tryNext);
+    img.addEventListener('load', () => {
+      if (img.dataset.hideSibling && img.nextElementSibling) {
+        img.nextElementSibling.style.display = 'none';
+      }
+    });
+
+    tryNext();
+  }
+
+  document.querySelectorAll('img[data-base]').forEach(loadWithFallback);
 });

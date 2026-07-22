@@ -369,7 +369,7 @@ section:not(#hero){ padding:88px 0; }
     repeating-linear-gradient(135deg, var(--surface-2) 0 2px, transparent 2px 14px),
     var(--surface);
 }
-.no-photo img.broken{ display:none; }
+img.broken{ display:none; }
 
 /* ==========================================================================
    Featured Spotlight
