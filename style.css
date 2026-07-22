@@ -410,8 +410,9 @@ section:not(#hero){ padding:88px 0; }
    ========================================================================== */
 .portfolio-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
-  gap:22px;
+  grid-template-columns:repeat(auto-fit, minmax(240px,300px));
+  justify-content:center;
+  gap:24px;
 }
 .portfolio-card{
   background:var(--surface);
@@ -471,6 +472,7 @@ section:not(#hero){ padding:88px 0; }
 /* ==========================================================================
    Process
    ========================================================================== */
+#process{ border-top:1px solid var(--border-soft); }
 .process-track{
   display:grid;
   grid-template-columns:repeat(5,1fr);
@@ -650,6 +652,7 @@ footer{ border-top:1px solid var(--border-soft); padding-top:64px; background:va
   section:not(#hero){ padding:64px 0; }
   .trust-strip{ grid-template-columns:1fr; }
   .services-grid{ grid-template-columns:1fr; }
+  .portfolio-grid{ grid-template-columns:1fr; max-width:340px; margin:0 auto; }
   .process-track{ grid-template-columns:1fr; }
   .why-grid{ grid-template-columns:1fr; }
   .footer-grid{ grid-template-columns:1fr; text-align:left; }
